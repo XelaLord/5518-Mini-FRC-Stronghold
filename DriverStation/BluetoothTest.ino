@@ -31,6 +31,7 @@ void loop()
       t[i] = Bluetooth.read();
       for (int a=0;a<5;a++){
         if(t[i] = alphabet[a]) {
+          buffer="";
           recording = true;
         }
       }
@@ -42,21 +43,9 @@ void loop()
         buffer += t[i]
       }
     } while (recording)
-    
-    /*if(1=0){
-      Serial.println("Bluetooth Available");
-      static char Abuffer[2];
-      for (int i=0; i<1; i++) {
-        Abuffer[i] = Bluetooth.read();
-        Serial.println("Data:" + Abuffer[i]);
-      }*/
-      if (readline(Bluetooth.read(), t, 9) > 0) {
-        Serial.print("You entered: >");
-        Serial.print(t);
-        Serial.println("<");
-      }
-      //delay(500);  
-    /*}*/
+   
+      //delay(500); //optional delay
+      Serial.print(buffer)
   }
   
 }
