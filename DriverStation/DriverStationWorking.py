@@ -10,6 +10,9 @@ This program is for grabbing data from joysticks to control arduinos connected t
 import serial
 import time
 import pygame
+
+alphabet=['a','b','c','d','e']
+
 print("MiniFRC Driver Station v1.0\n")
 print("Booting...")
 pygame.init()
@@ -61,9 +64,8 @@ if pygame.joystick.get_count() >0:
             events = pygame.event.get() #update pygame internally
             package = ""
             for j in range( axes ):
-                package += ("%s;" % (str( "{:7.5f}".format(joystick.get_axis( j ) ) ) ) )
-            '''
-            package = "b"
+                package += ("%s%s;" % (alphabet[j],str( "{:8.5f}".format(joystick.get_axis( j ) ) ) ) )
+            '''package = "b"
             for k in range( buttons ):
                 package += ("%s;" % (str(joystick.get_button( k ) ) ) )
 
@@ -71,8 +73,9 @@ if pygame.joystick.get_count() >0:
             for l in range( hats ):
                 package += ("%s;" % (str(joystick.get_hat( l ) ) ) )
             '''
-            package += "z"
+            #package += ""
             print(package)
+            #s.write(bytes('cs','utf-8'))
             s.write(bytes(package,'utf-8'))
             Clock.tick(20) #driver station tested and run at 20FPS, results may vary at other framerates.
     except Exception as e:
