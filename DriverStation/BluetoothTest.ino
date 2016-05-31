@@ -3,6 +3,7 @@
 SoftwareSerial Bluetooth(3, 12); //Position 1: RX, Position 2: TX
 
 boolean recording = false;
+String alphabet[] = {"a","b","c","d","e"};
 
 void ReadLine() {
   
@@ -21,11 +22,11 @@ void loop()
   int l = 52;
   String t[l];
   while(Bluetooth.available()>0) {
-    Serial.println("Bluetooth Available");
+    //Serial.println("Bluetooth Available");
     Serial.println("Data:");
-    for(int i=0; i<l-1; i++) {
+    while(recording) {
       t[i] = Bluetooth.read();
-      Serial.print(t[i]); 
+      //Serial.print(t[i]); 
     }
     
     /*if(1=0){
